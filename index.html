@@ -116,6 +116,9 @@
       .kvs{grid-template-columns:1fr;}
     }
     .kvs .k{color:var(--muted);}
+    .lang-switch{
+    margin-top:10px;
+    }
   </style>
 </head>
 <body>
@@ -130,6 +133,12 @@
         <button class="tab active" data-target="projects">Projects</button>
         <button class="tab" data-target="profile">Profile</button>
       </nav>
+
+      <div class="lang-switch">
+        <button onclick="switchLang('ja')">JP</button>
+        <button onclick="switchLang('en')">EN</button>
+      </div>
+      
     </header>
 
     <div class="grid">
