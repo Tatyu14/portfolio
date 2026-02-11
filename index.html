@@ -1,34 +1,232 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Portfolio</title>
   <style>
-    body { font-family: Arial, sans-serif; margin: 40px; }
-    h1 { color: #333; }
-    section { margin-bottom: 40px; }
+    :root{
+      --bg:#0b1020;
+      --card:#121a33;
+      --text:#e9ecf5;
+      --muted:#a8b0cc;
+      --accent:#6ea8fe;
+      --line:rgba(255,255,255,.12);
+    }
+    *{box-sizing:border-box;}
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+      background: radial-gradient(1200px 600px at 20% 0%, rgba(110,168,254,.25), transparent 60%),
+                  radial-gradient(900px 500px at 90% 10%, rgba(140,255,208,.16), transparent 55%),
+                  var(--bg);
+      color:var(--text);
+    }
+    .wrap{max-width:980px; margin:0 auto; padding:28px 18px 60px;}
+    header{
+      display:flex; flex-wrap:wrap; gap:16px;
+      align-items:center; justify-content:space-between;
+      margin-bottom:18px;
+    }
+    .title{
+      display:flex; flex-direction:column; gap:6px;
+    }
+    h1{margin:0; font-size:28px; letter-spacing:.3px;}
+    .subtitle{margin:0; color:var(--muted); font-size:14px; line-height:1.4;}
+    .tabs{
+      display:flex; gap:10px; flex-wrap:wrap;
+      background: rgba(18,26,51,.55);
+      border:1px solid var(--line);
+      padding:8px;
+      border-radius:14px;
+      backdrop-filter: blur(6px);
+    }
+    .tab{
+      border:1px solid transparent;
+      background: transparent;
+      color:var(--muted);
+      padding:9px 12px;
+      border-radius:12px;
+      cursor:pointer;
+      font-weight:600;
+      font-size:14px;
+    }
+    .tab.active{
+      background: rgba(110,168,254,.18);
+      color: var(--text);
+      border-color: rgba(110,168,254,.35);
+    }
+    .grid{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap:14px;
+      margin-top:14px;
+    }
+    @media (max-width: 860px){
+      .grid{grid-template-columns:1fr;}
+    }
+    .card{
+      background: rgba(18,26,51,.72);
+      border:1px solid var(--line);
+      border-radius:18px;
+      padding:16px;
+      box-shadow: 0 12px 30px rgba(0,0,0,.25);
+      backdrop-filter: blur(8px);
+    }
+    .card h2{margin:0 0 10px; font-size:18px;}
+    .pill{
+      display:inline-block;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      color:var(--muted);
+      font-size:12px;
+      margin:4px 6px 0 0;
+    }
+    .list{margin:0; padding-left:18px; color:var(--text);}
+    .list li{margin:8px 0; color:var(--text);}
+    .muted{color:var(--muted);}
+    .project{
+      display:grid; gap:8px;
+      padding:14px;
+      border-radius:16px;
+      border:1px solid var(--line);
+      background: rgba(11,16,32,.35);
+      margin-top:12px;
+    }
+    .project-title{
+      display:flex; align-items:center; justify-content:space-between; gap:10px;
+      flex-wrap:wrap;
+    }
+    .project-title strong{font-size:16px;}
+    a{
+      color: var(--accent);
+      text-decoration:none;
+    }
+    a:hover{text-decoration:underline;}
+    footer{margin-top:22px; color:var(--muted); font-size:12px;}
+    .hide{display:none;}
+    .kvs{
+      display:grid;
+      grid-template-columns: 140px 1fr;
+      gap:10px 12px;
+      margin-top:10px;
+    }
+    @media (max-width: 520px){
+      .kvs{grid-template-columns:1fr;}
+    }
+    .kvs .k{color:var(--muted);}
   </style>
 </head>
 <body>
+  <div class="wrap">
+    <header>
+      <div class="title">
+        <h1>My Portfolio</h1>
+        <p class="subtitle">ERP（原価計算領域）を中心に開発。要件整理〜設計〜実装〜テストまで担当。</p>
+      </div>
 
-  <h1>My Portfolio</h1>
-  <p>ERP（原価計算領域）を中心に開発しています。</p>
+      <nav class="tabs" aria-label="Section tabs">
+        <button class="tab active" data-target="projects">Projects</button>
+        <button class="tab" data-target="profile">Profile</button>
+      </nav>
+    </header>
 
-  <section>
-    <h2>Projects</h2>
-    <ul>
-      <li>原価配賦シミュレーター（制作中）</li>
-    </ul>
-  </section>
+    <div class="grid">
+      <!-- 左：メイン -->
+      <main class="card">
+        <!-- Projects -->
+        <section id="projects">
+          <h2>Projects</h2>
+          <p class="muted">リンクはあとから追加でOK。まずは“何を作ったか”が伝われば勝ち。</p>
 
-  <section>
-    <h2>Skills</h2>
-    <ul>
-      <li>Java</li>
-      <li>SQL</li>
-      <li>ERP開発</li>
-    </ul>
-  </section>
+          <div class="project">
+            <div class="project-title">
+              <strong>原価配賦シミュレーター（制作中）</strong>
+              <span class="muted">個人開発</span>
+            </div>
+            <div class="muted">
+              目的：配賦ロジックの理解と説明ができるようにするためのミニツール。
+            </div>
+            <div>
+              <span class="pill">Java</span>
+              <span class="pill">SQL</span>
+              <span class="pill">ERP</span>
+            </div>
+            <div class="muted">
+              <a href="#" onclick="alert('後でGitHubリンクやデモURLをここに入れよう！'); return false;">GitHub / Demo（準備中）</a>
+            </div>
+          </div>
+        </section>
 
+        <!-- Profile -->
+        <section id="profile" class="hide">
+          <h2>Profile</h2>
+          <p class="muted">
+            個人情報は出しすぎなくてOK。「何ができる人か」を短くまとめるのが強い。
+          </p>
+
+          <div class="kvs">
+            <div class="k">得意領域</div><div>ERP（原価計算） / データ集計 / 業務ロジック</div>
+            <div class="k">できること</div><div>要件整理 / 設計 / 実装 / テスト / 改善</div>
+            <div class="k">主な技術</div><div>Java / SQL</div>
+            <div class="k">公開リンク</div>
+            <div>
+              <a href="https://github.com/tatyu14" target="_blank" rel="noreferrer">GitHub</a>
+              <span class="muted">（必要ならQiitaやXも追加）</span>
+            </div>
+          </div>
+
+          <div style="margin-top:14px;" class="muted">
+            連絡先：メールは<strong>公開しない</strong>方針でもOK。必要なら「お問い合わせフォーム」や「Wantedly」等に寄せるのもアリ。
+          </div>
+        </section>
+      </main>
+
+      <!-- 右：サイド -->
+      <aside class="card">
+        <h2>Skills</h2>
+        <div>
+          <span class="pill">Java</span>
+          <span class="pill">SQL</span>
+          <span class="pill">ERP開発</span>
+          <span class="pill">原価計算</span>
+          <span class="pill">設計</span>
+          <span class="pill">テスト</span>
+        </div>
+
+        <h2 style="margin-top:16px;">Quick Links</h2>
+        <ul class="list">
+          <li><a href="https://tatyu14.github.io/portfolio/" target="_blank" rel="noreferrer">Live Site</a></li>
+          <li><a href="https://github.com/tatyu14/portfolio" target="_blank" rel="noreferrer">Repository</a></li>
+        </ul>
+
+        <footer>
+          更新のコツ：Projectsを1つずつ増やす → スクショ追加 → 説明を短く整える
+        </footer>
+      </aside>
+    </div>
+  </div>
+
+  <script>
+    // タブ切り替え
+    const tabs = document.querySelectorAll('.tab');
+    const sections = {
+      projects: document.getElementById('projects'),
+      profile: document.getElementById('profile')
+    };
+
+    tabs.forEach(btn => {
+      btn.addEventListener('click', () => {
+        tabs.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const target = btn.dataset.target;
+        Object.keys(sections).forEach(key => {
+          sections[key].classList.toggle('hide', key !== target);
+        });
+      });
+    });
+  </script>
 </body>
 </html>
